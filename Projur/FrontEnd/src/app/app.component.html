@@ -1,0 +1,90 @@
+<div class="container">
+  <form [formGroup]="UsuarioForm" (ngSubmit)="this[EventValue]()">
+    <h3>Usuários</h3>
+    <div class="row">
+      <table class="table">
+        <tr>
+          <td>Nome</td>
+          <td>
+            <input type="hidden" formControlName="Nome">
+            <input type="text" formControlName="Nome">
+            <div *ngIf="submitted && UsuarioForm.controls.Nome.errors" class="text-danger">
+              <div *ngIf="UsuarioForm.controls.Nome.errors.required">O Nome é obrigatório</div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>Sobrenome</td>
+          <td>
+            <input type="text" formControlName="Sobrenome">
+            <div *ngIf="submitted && UsuarioForm.controls.Sobrenome.errors" class="text-danger">
+              <div *ngIf="UsuarioForm.controls.Sobrenome.errors.required">Sobrenome é obrigatório</div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>E-mail</td>
+          <td>
+            <input type="text" formControlName="Email">
+            <div *ngIf="submitted && UsuarioForm.controls.Email.errors" class="text-danger">
+              <div *ngIf="UsuarioForm.controls.Email.errors.required">Informe o E-mail</div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>Data de Nascimento</td>
+          <td>
+            <input type="text" formControlName="DataNascimento">
+            <div *ngIf="submitted && UsuarioForm.controls.DataNascimento.errors" class="text-danger">
+              <div *ngIf="UsuarioForm.controls.DataNascimento.errors.required">Data de Nascimento  é obrigatório</div>
+            </div>
+          </td>
+        </tr>
+        <tr class="position-relative form-group text-left">
+          <td>Escolaridade</td>
+          <td>
+            <select id="status" class="form-control" formControlName="Escolaridade">
+              <option value="" selected disabled>Selecione</option>
+              <option value="1">Infantil</option>
+              <option value="2">Fundamental</option>
+              <option value="3">Médio</option>
+              <option value="4">Superior</option>
+            </select>
+            <div *ngIf="submitted && UsuarioForm.controls.Escolaridade.errors" class="text-danger">
+              <div *ngIf="UsuarioForm.controls.Escolaridade.errors.required">Escolaridade é obrigatório</div>
+            </div>
+          </td>         
+        </tr>
+        <tr>
+          <td colspan="2">
+            <button type="submit" class="btn btn-primary">{{EventValue}}</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="row">
+      <table class="table table-striped">
+        <tr>
+          <td>Id</td>
+          <td>Nome</td>
+          <td>Sobrenome</td>
+          <td>E-mail</td>
+          <td>Data de Nascimento</td>
+          <td>Escolaridade</td>
+          <td>Edita</td>
+          <td>Deleta</td>
+        </tr>
+        <tr *ngFor="let d of data">
+          <td>{{d.Id}}</td>
+          <td>{{d.Nome}}</td>
+          <td>{{d.Sobrenome}}</td>
+          <td>{{d.Email}}</td>
+          <td>{{d.DataNascimento}}</td>
+          <td>{{d.Escolaridade}}</td>
+          <td><a (click)="EditData(d)" class="btn btn-warning">Editar</a></td>
+          <td><a (click)="deleteData(d.Id)" class="btn btn-danger">Deletar</a></td>
+        </tr>
+      </table>
+    </div>
+  </form>
+</div> 
